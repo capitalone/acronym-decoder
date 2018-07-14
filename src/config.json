@@ -1,0 +1,14 @@
+{
+    "mainIconPath": "../../assets/main-icon.png",
+    "onlineIconPath": "../../assets/main-icon.png",
+    "offlineIconPath": "../../assets/browser-icon-local.png",
+    "contactEmail": "email@email.com",
+    "lookupApiUrl": "https://blahblahblah.com/api",
+    "enableRemoteLookup": false,
+    "slackChannelLink": "slack://channel?team=<TEAM-ID>&id=<CHANNEL-ID>",
+    "slackChannelName": "#nameOfTheChannel",
+    "extensionInfoPageLink": "https://google.com",
+    "extensionInfoPageName": "Info Page",
+    "googleAnalyticsEnabled": false,
+    "googleAnalyticsId": "your id here"
+}

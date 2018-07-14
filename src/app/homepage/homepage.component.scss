@@ -1,0 +1,76 @@
+/*
+Copyright 2018 Capital One Services, LLC Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and limitations under the License.
+ */
+
+@import '~@angular/material/theming';
+// Import your custom theme
+@import 'src/decoder-default-palette.scss';
+
+html {
+    background-color: #39a0d4;
+    font-family: Arial, Tahoma, sans-serif;
+}
+
+body {
+    background: none;
+}
+
+h4, h6 {
+    font-weight: 400;
+    margin-left: 8px;
+}
+
+#decoderOptions .logo {
+    width: 125px;
+    padding-bottom: 5px;
+}
+
+#decoderOptions .options-box {
+    background-color: white;
+    padding: 30px 30px 20px;
+    margin-top: 3em;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+#decoderOptions #optionsContainer {
+    width: 700px;
+    margin: 5em auto 1em;
+}
+
+#decoderOptions .options-info {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #19222a;
+}
+
+#decoderOptions .save-options {
+    width: 200px;
+    mat-spinner {
+        display: inline;
+        circle {
+            stroke: mat-color($app-primary);
+        }
+    }
+    .on-right {
+        position: absolute;
+        right: -35px;
+        top: 25%;
+        color: mat-color($app-primary);
+        &.mat-icon {
+            margin-top: -2px;
+        }
+    }
+    &:focus {
+        outline: none;
+    }
+}
+
+#decoderOptions #version {
+    color: #FFFFFF;
+}

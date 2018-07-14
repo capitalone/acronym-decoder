@@ -1,0 +1,30 @@
+[
+    {
+        "acronym": "TERM",
+        "definition": "Definition of the term or acronym goes here",
+        "links": [
+            {
+                "name": "1st Link",
+                "link": "https://www.google.com"
+            },
+            {
+                "name": "2nd Link",
+                "link": "https://www.google.com"
+            }
+        ]
+    },
+    {
+        "acronym": "ACRONYM",
+        "definition": "Definition of the term or acronym goes here",
+        "links": [
+            {
+                "name": "1st Link",
+                "link": "https://www.google.com"
+            },
+            {
+                "name": "2nd Link",
+                "link": "https://www.google.com"
+            }
+        ]
+    }
+]

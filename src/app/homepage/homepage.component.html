@@ -1,0 +1,81 @@
+<!--
+Copyright 2018 Capital One Services, LLC Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and limitations under the License.
+-->
+
+<div id="decoderOptions">
+    <div id="optionsContainer">
+        <div class="text-center">
+            <img id="icon" class="logo" [src]="config?.mainIconPath"/>
+
+            <p id="version">v{{extensionVersion}}</p>
+        </div>
+        <div class="options-box">
+            <div class="options-info">
+                <p>
+                    Your input makes Acronym Decoder smarter! Please send feedback on wrong/missing definitions or this tool in
+                    general to
+                    <a href="mailto:{{config?.contactEmail}}">{{config?.contactEmail}}</a>
+                </p>
+                <p>
+                    For more info on Acronym Decoder and how to use it, visit our
+                    <a [href]="config?.extensionInfoPageLink" target="_blank" rel="noopener noreferrer">
+                        {{config?.extensionInfoPageName}}
+                    </a>
+                    or join our Slack channel
+                    <a [href]="slackChannelNativeUrl">
+                        {{config?.slackChannelName}}
+                    </a>
+                </p>
+            </div>
+            <hr>
+            <h4>Options</h4>
+            <hr>
+            <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                <h6 fxFlex="50%">On page lookup:</h6>
+                <mat-form-field fxFlex="50%">
+                    <mat-select [(value)]="options.lookupEnabled" (valueChange)="optionsChanged()">
+                        <mat-option [value]="true">Enabled</mat-option>
+                        <mat-option [value]="false">Disabled</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                <h6 fxFlex="50%">Mouse click modifier:</h6>
+                <mat-form-field fxFlex="50%">
+                    <mat-select [(value)]="options.lookupModifier" (valueChange)="optionsChanged()">
+                        <mat-option [value]="0">Only Double Click</mat-option>
+                        <mat-option [value]="1">Ctrl + Double Click</mat-option>
+                        <mat-option [value]="2">Alt + Double Click</mat-option>
+                        <mat-option [value]="3">Command + Double Click</mat-option>
+                        <mat-option [value]="4">Ctrl + Alt + Double Click</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                <h6 fxFlex="50%">"Definition Not Found" dialog:</h6>
+                <mat-form-field fxFlex="50%">
+                    <mat-select [(value)]="options.notFoundDialog" (valueChange)="optionsChanged()">
+                        <mat-option [value]="true">Enabled</mat-option>
+                        <mat-option [value]="false">Disabled</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <hr>
+            <div fxLayoutAlign="center">
+                <button mat-raised-button [color]="savingOptions || optionsSaved ? 'primary' : 'accent'" type="button"
+                        id="saveOptions" class="save-options"
+                        (click)="saveOptions()">
+                    <span *ngIf="!savingOptions && !optionsSaved">Save</span>
+                    <span *ngIf="savingOptions">Saving
+                        <mat-spinner class="on-right" [diameter]="18" color="accent"></mat-spinner></span>
+                    <span *ngIf="optionsSaved">Saved <mat-icon class="on-right">check</mat-icon></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

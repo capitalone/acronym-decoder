@@ -1,0 +1,128 @@
+/*
+Copyright 2018 Capital One Services, LLC Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and limitations under the License.
+ */
+
+.decoder {
+    width: 600px;
+    padding: 2em 2em 1em;
+    transition: all 0.5s ease;
+    font-size: 14px;
+}
+
+.decoder button {
+    height: 34px;
+}
+
+.search-button mat-icon {
+    margin-bottom: 4px;
+}
+
+.decoder a {
+    cursor: pointer;
+    color: #1e7aa9;
+    display: inline-block;
+}
+
+.decoder a.def-link {
+    width: 475px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.decoder a:hover {
+    color: #303646;
+    text-decoration: underline;
+}
+
+.decoder .link {
+    padding: 0 1em 1em;
+}
+
+.decoder .header {
+    text-align: center;
+}
+
+.decoder .extension-icon {
+    width: 100px;
+    padding-bottom: 10px;
+}
+
+.decoder #resultsBody {
+    padding: 15px 5px 0;
+    transition: opacity 0.35s linear;
+}
+
+.decoder #resultsHeader {
+    color: #19222a;
+}
+
+.decoder #resultsTable {
+    color: #7e7e7e;
+    transition: opacity 0.35s linear;
+}
+
+.decoder #resultsTable li {
+    padding: 0 0 10px;
+}
+
+.decoder #resultsTable p {
+    color: #19222a;
+    margin: 0 0 5px;
+}
+
+.decoder #noResults {
+    text-align: center;
+    color: #b7b7b7;
+    padding: 1em 0;
+}
+
+.decoder .btn-success {
+    background-color: #38b13d;
+}
+
+.decoder .bottom-info {
+    text-align: center;
+    font-size: 14px;
+    color: #757575;
+    font-weight: normal;
+}
+
+.decoder #version {
+    font-size: 10px;
+    margin: 0;
+    color: #9E9E9E;
+}
+
+.decoder #description {
+    color: #757575;
+    margin-bottom: 20px;
+}
+
+.decoder #settings {
+    text-align: right;
+}
+
+.decoder #settings svg {
+    cursor: pointer;
+    fill: gray;
+}
+
+.decoder #settings svg:hover {
+    fill: black;
+}
+
+.spinner-container {
+    margin-top: 30px;
+}
+
+.spinner-container p {
+    margin-top: 15px;
+    color: #757575;
+}
+

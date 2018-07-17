@@ -36,6 +36,14 @@ You can also setup a database and backend and host your terms/acronyms on a serv
 Make sure to replace the `lookupApiUrl` in the `config.json` file with the server URL.
 Also you need to make sure that the toggle for `enableRemoteLookup` is set to `true` on the `config.json` file to enable remote lookup. If for any reason the API fails, the app will fallback to local glossary.
 
+### Contributors:
+We welcome your interest in Capital One’s Open Source Projects (the “Project”). Any Contributor to the project must accept and sign a CLA indicating agreement to the license terms. Except for the license granted in this CLA to Capital One and to recipients of software distributed by Capital One, you reserve all right, title, and interest in and to your contributions; this CLA does not impact your rights to use your own contributions for any other purpose.
+
+[Link to Individual CLA](https://docs.google.com/forms/d/e/1FAIpQLSfwtl1s6KmpLhCY6CjiY8nFZshDwf_wrmNYx1ahpsNFXXmHKw/viewform)
+
+[Link to Corporate CLA](https://docs.google.com/forms/d/e/1FAIpQLSeAbobIPLCVZD_ccgtMWBDAcN68oqbAJBQyDTSAQ1AkYuCp_g/viewform)
+
+This project adheres to the [Open Source Code of Conduct](https://developer.capitalone.com/single/code-of-conduct/). By participating, you are expected to honor this code.
 
 ## Troubleshooting
 * Having issues installing Acronym-Decoder?

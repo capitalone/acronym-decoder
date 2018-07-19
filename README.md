@@ -51,7 +51,7 @@ This project adheres to the [Open Source Code of Conduct](https://developer.capi
 
 Create an issue on our repo and let us know. We're always here to help!
 
-## Licence
+## License
 
     Copyright 2018 Capital One Services, LLC
 

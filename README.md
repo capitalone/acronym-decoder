@@ -45,6 +45,11 @@ We welcome your interest in Capital One’s Open Source Projects (the “Project
 
 This project adheres to the [Open Source Code of Conduct](https://developer.capitalone.com/single/code-of-conduct/). By participating, you are expected to honor this code.
 
+## Project main contributors:
+[@Basim Partovi](https://github.com/baspartovi)
+
+[@Jason Yeomans](https://github.com/YeomansIII)
+
 ## Troubleshooting
 * Having issues installing Acronym-Decoder?
 * Or for any other problems/questions:

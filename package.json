@@ -28,7 +28,7 @@
     "@types/universal-analytics": "^0.4.2",
     "bootstrap": "^4.0.0",
     "core-js": "^2.4.1",
-    "rxjs": "^5.5.2",
+    "rxjs": "^5.5.12",
     "universal-analytics": "^0.4.16",
     "zone.js": "^0.8.14"
   },

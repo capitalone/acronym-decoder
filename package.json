@@ -26,7 +26,7 @@
     "@angular/router": "^5.0.0",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0",
     "@types/universal-analytics": "^0.4.2",
-    "bootstrap": "^4.0.0",
+    "bootstrap": "^4.5.0",
     "core-js": "^2.4.1",
     "rxjs": "^5.5.2",
     "universal-analytics": "^0.4.16",

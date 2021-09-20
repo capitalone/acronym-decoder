@@ -1,4 +1,4 @@
-
+# Due to changes in the priorities, this project is currently not being supported. The project is archived as of 9/17/21 and will be available in a read-only state. Please note, since archival, the project is not maintained or reviewed. #
 
 ## Drinketh from the Cup of Knowledge!
 Whether you've been with your organization one day or one decade, we are all always running into terms and acronyms that we just don't get. Maybe it's an industry or line of business you're not too familiar with. Maybe it's an acronym that someone just made up and started using the other day. Maybe it's a typo!

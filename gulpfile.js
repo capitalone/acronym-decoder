@@ -62,5 +62,5 @@ gulp.task('watch', function() {
     gulp.watch(['content-script/*.ts'], ['content-script']);
 });
 
-gulp.task('build', ['ng-build', 'content-script']);
-gulp.task('default', ['ng-build-watch', 'content-script', 'watch']);
+gulp.task('build', gulp.series('ng-build', 'content-script'));
+gulp.task('default', gulp.series('ng-build-watch', 'content-script', 'watch'));

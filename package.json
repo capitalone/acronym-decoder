@@ -28,6 +28,7 @@
     "@types/universal-analytics": "^0.4.2",
     "bootstrap": "^4.0.0",
     "core-js": "^2.6.11",
+    "node-sass": "^7.0.1",
     "rxjs": "^5.5.2",
     "universal-analytics": "^0.4.16",
     "zone.js": "^0.8.14"
@@ -42,7 +43,7 @@
     "@types/node": "~6.0.60",
     "browserify": "^14.5.0",
     "codelyzer": "~3.2.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-sourcemaps": "^2.6.1",
     "gulp-typescript": "^3.2.3",
     "gulp-uglify": "^3.0.0",
@@ -61,6 +62,6 @@
     "tslint": "~5.7.0",
     "typescript": "~2.4.2",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^2.0.0"
   }
 }

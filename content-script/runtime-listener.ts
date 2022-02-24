@@ -14,9 +14,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and limitations under the License.
  */
 
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/interval';
-import 'rxjs/add/operator/takeWhile';
+import {Observable, interval} from 'rxjs';
+import { takeWhile } from 'rxjs/operators';
 import {OptionsModel, OptionsModelKeys} from '../src/app/models/options.model';
 import {ModifierEnum} from '../src/app/models/modifier.enum';
 
@@ -214,8 +213,8 @@ export class RuntimeListener {
         if (chrome.tabs) {
             // In order to fix the issue with mailto, open a new tab and set the URL to the mailto path
             chrome.tabs.create({'url': mailtoPath}, function (tab) {
-                Observable.interval(300)
-                    .takeWhile(() => c > 0)
+                interval(300).pipe(
+                    takeWhile(() => c > 0))
                     .subscribe(i => {
                         c++;
                         chrome.tabs.remove(tab.id);

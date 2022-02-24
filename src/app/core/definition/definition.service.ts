@@ -15,17 +15,17 @@ See the License for the specific language governing permissions and limitations 
  */
 
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {ConfigurationService} from '../configuration/configuration.service';
-import 'rxjs/add/operator/map';
+import { map } from 'rxjs/operators';
 import {AnalyticsService} from '../analytics/analytics.service';
 import {LookupModel} from '../../models/lookup.model';
 import {ConfigModel} from '../../models/config.model';
 import {DatabaseType} from '../../models/database-type.enum';
 import {LookupApiResponseModel} from '../../models/lookup-api-response.model';
 import {LookupSource} from '../../models/lookup-source.enum';
-import 'rxjs/add/operator/timeout';
+import { timeout } from 'rxjs/operators';
 
 
 @Injectable()
@@ -107,7 +107,7 @@ export class DefinitionService {
 
         return Observable.create(observer => {
             this.http.get<LookupApiResponseModel>(lookupUrl)
-                .timeout(3000)
+                .pipe(timeout(3000))
                 .subscribe(
                     (res: LookupApiResponseModel) => {
                         console.log('Search results (remotely): ', res);

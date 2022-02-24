@@ -15,11 +15,8 @@
             "prefix": "app",
             "architect": {
                 "build": {
-                    "builder": "@angular-builders/custom-webpack:browser",
+                    "builder": "@angular-devkit/build-angular:browser",
                     "options":{
-                        "customWebpackConfig": {
-                            "path": "./webpack.config.js"
-                        },
                         "outputPath": "dist",
                         "index": "src/index.html",
                         "main": "src/main.ts",
@@ -31,7 +28,7 @@
                             "src/manifest.json",
                             "src/glossary.json",
                             "src/config.json"
-                          ],
+                        ],
                         "styles": [
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "src/styles.scss"

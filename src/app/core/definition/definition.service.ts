@@ -19,7 +19,6 @@ import { Observable } from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {ConfigurationService} from '../configuration/configuration.service';
 import { map } from 'rxjs/operators';
-import {AnalyticsService} from '../analytics/analytics.service';
 import {LookupModel} from '../../models/lookup.model';
 import {ConfigModel} from '../../models/config.model';
 import {DatabaseType} from '../../models/database-type.enum';
@@ -38,7 +37,6 @@ export class DefinitionService {
 
 
     constructor(private configurationService: ConfigurationService,
-                private analyticsService: AnalyticsService,
                 private http: HttpClient) {
         this.populateConfiguration();
     }
@@ -138,9 +136,7 @@ export class DefinitionService {
      * @param {number} numResults
      */
     gaLookupEvent(lookupSource: LookupSource, databaseType: DatabaseType, term: string, numResults: number) {
-        if (this.config.googleAnalyticsEnabled) {
-            this.analyticsService.getVisitor().event(lookupSource, databaseType, term, numResults).send();
-        }
+        
     }
 
 }

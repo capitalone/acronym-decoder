@@ -17,14 +17,12 @@ See the License for the specific language governing permissions and limitations 
 import {ConfigurationService} from './configuration/configuration.service';
 import {DefinitionService} from './definition/definition.service';
 import {NgModule} from '@angular/core';
-import {AnalyticsService} from './analytics/analytics.service';
 
 // Module for our different services
 @NgModule({
     providers: [
         ConfigurationService,
         DefinitionService,
-        AnalyticsService
     ]
 })
 export class CoreModule {

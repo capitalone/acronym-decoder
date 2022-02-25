@@ -1,8 +1,12 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "./dist/out-tsc",
+    "outDir": "./dist/",
     "sourceMap": true,
+    "noImplicitAny": false,
+    "module": "es6",
+    "jsx": "react",
+    "allowJs": true,
     "declaration": false,
     "moduleResolution": "node",
     "skipLibCheck": true,

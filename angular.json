@@ -67,6 +67,7 @@
                             "sourceMap": true,
                             "vendorChunk": true,
                             "namedChunks": false,
+                            "aot": true,
                             "optimization":{
                                 "styles":{
                                     "inlineCritical": false
@@ -114,6 +115,16 @@
                         "src/assets"
                       ],
                       "styles": [
+                        {
+                            "input": "node_modules/bootstrap/dist/css/bootstrap.min.css",
+                            "inject": false,
+                            "bundleName": "mainstyle"
+                        },
+                        {
+                            "input": "./src/styles.scss",
+                            "inject": false,
+                            "bundleName": "mainstyle"
+                        }
                       ],
                       "scripts": []
                     }

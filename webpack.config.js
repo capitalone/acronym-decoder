@@ -2,6 +2,7 @@ const path = require('path');
 
 module.exports = {
     entry: './content-script/boot.ts',
+    mode: 'production',
     devtool: 'inline-source-map',
     module: {
         rules: [{

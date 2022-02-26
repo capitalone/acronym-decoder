@@ -14,7 +14,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and limitations under the License.
  */
 
-import {Component, ComponentFactoryResolver, Injector, OnInit} from '@angular/core';
+import {Component, ViewContainerRef, ComponentFactoryResolver, Injector, OnInit} from '@angular/core';
 import {LookupComponent} from '../lookup/lookup.component';
 import {DefinitionService} from '../core/definition/definition.service';
 import {OptionsModel, OptionsModelKeys} from '../models/options.model';
@@ -41,7 +41,7 @@ export class EventPageComponent implements OnInit {
     }
 
     constructor(private definitionService: DefinitionService,
-                private resolver: ComponentFactoryResolver,
+                private resolver: ViewContainerRef,
                 private injector: Injector) {
     }
 
@@ -94,9 +94,8 @@ export class EventPageComponent implements OnInit {
         this.definitionService.lookupTerm(data.query, LookupSource.lookup).subscribe(
             (definitions: LookupModel[]) => {
                 if (definitions.length > 0 || this.options.notFoundDialog) {
-                    const factory = this.resolver.resolveComponentFactory(LookupComponent);
-                    const component = factory.create(this.injector);
-
+                    const component = this.resolver.createComponent(LookupComponent);
+                   
                     component.instance.lookupWord = data.query;
                     component.instance.definitions = definitions;
                     component.instance.changeDetectorRef.detectChanges();

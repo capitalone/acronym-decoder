@@ -25,7 +25,7 @@ import {AppComponent} from './app.component';
 import {HomepageComponent} from './homepage/homepage.component';
 import {EventPageComponent} from './event-page/event-page.component';
 import {PopupComponent} from './popup/popup.component';
-import {NgbModule} from '../../node_modules/@ng-bootstrap/ng-bootstrap';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ConfigurationService} from './core/configuration/configuration.service';
 import {AppMaterialModule} from './custom-modules/app-material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';

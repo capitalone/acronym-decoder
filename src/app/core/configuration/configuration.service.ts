@@ -41,7 +41,7 @@ export class ConfigurationService {
     }
 
     getExtensionVersion(): Observable<string> {
-        return Observable.create(observer => {
+        return new Observable(observer => {
             if (this.manifest) {
                 observer.next(this.manifest.version);
             } else {

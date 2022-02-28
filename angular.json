@@ -30,16 +30,8 @@
                             "src/config.json"
                         ],
                         "styles": [
-                            {
-                                "input": "node_modules/bootstrap/dist/css/bootstrap.min.css",
-                                "inject": false,
-                                "bundleName": "mainstyle"
-                            },
-                            {
-                                "input": "./src/styles.scss",
-                                "inject": false,
-                                "bundleName": "mainstyle"
-                            }
+                            "node_modules/bootstrap/dist/css/bootstrap.min.css",
+                            "./src/styles.scss"
                         ],
                         "scripts": []
                     },
@@ -63,11 +55,10 @@
                                 "with": "src/environments/environment.prod.ts"
                             }
                             ],
-                            "outputHashing": "all",
+                            "outputHashing": "none",
+                            "extractLicenses": false,
                             "sourceMap": true,
                             "vendorChunk": true,
-                            "namedChunks": false,
-                            "aot": true,
                             "optimization":{
                                 "styles":{
                                     "inlineCritical": false
@@ -118,12 +109,12 @@
                         {
                             "input": "node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "inject": false,
-                            "bundleName": "mainstyle"
+                            "bundleName": "style"
                         },
                         {
                             "input": "./src/styles.scss",
                             "inject": false,
-                            "bundleName": "mainstyle"
+                            "bundleName": "style"
                         }
                       ],
                       "scripts": []

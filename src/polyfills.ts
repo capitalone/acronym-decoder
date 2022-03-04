@@ -59,7 +59,7 @@ See the License for the specific language governing permissions and limitations 
 
 /** Evergreen browsers require these. **/
 // Used for reflect-metadata in JIT. If you use AOT (and only Angular decorators), you can remove.
-import 'core-js/es7/reflect';
+import 'core-js/proposals/reflect-metadata';
 
 
 /**

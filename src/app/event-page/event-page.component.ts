@@ -14,7 +14,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and limitations under the License.
  */
 
-import {Component, ViewContainerRef, ComponentFactoryResolver, Injector, OnInit} from '@angular/core';
+import {Component, ViewContainerRef, Injector, OnInit} from '@angular/core';
 import {LookupComponent} from '../lookup/lookup.component';
 import {DefinitionService} from '../core/definition/definition.service';
 import {OptionsModel, OptionsModelKeys} from '../models/options.model';

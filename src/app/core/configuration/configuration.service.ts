@@ -55,7 +55,7 @@ export class ConfigurationService {
     }
 
     getConfiguration(): Observable<ConfigModel> {
-        return Observable.create(observer => {
+        return new Observable(observer => {
             if (this.config) {
                 observer.next(this.config);
             } else {

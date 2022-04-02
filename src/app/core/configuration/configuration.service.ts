@@ -37,7 +37,7 @@ export class ConfigurationService {
     }
 
     getJsonFileContent(fileName: string): Observable<any> {
-        return this.http.get(chrome.extension.getURL(fileName));
+        return this.http.get(chrome.runtime.getURL(fileName));
     }
 
     getExtensionVersion(): Observable<string> {

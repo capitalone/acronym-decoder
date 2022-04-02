@@ -2,7 +2,7 @@
     "name": "Acronym Decoder Chrome Extension",
     "description": "Search for a term to get definitions and explanations for all of your organization or industry's acronyms, terms and phrases.",
     "version": "1.0.0",
-    "manifest_version": 2,
+    "manifest_version": 3,
     "permissions": [
         "tabs",
         "activeTab",
@@ -15,14 +15,13 @@
         "48": "assets/main-icon.png",
         "128": "assets/main-icon.png"
     },
-    "browser_action": {
+    "action": {
         "default_icon": "assets/main-icon.png",
         "default_title": "Acronym Decoder",
         "default_popup": "index.html#/popup"
     },
     "background": {
-        "page": "index.html#/event-page",
-        "persistent": false
+        "service-worker": "background.js"
     },
     "options_page": "index.html#/homepage",
     "content_scripts": [
@@ -36,5 +35,8 @@
             ]
         }
     ],
-    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+    "content_security_policy" : {
+        "script-src": "self",
+        "object-src": "self"
+    }
 }

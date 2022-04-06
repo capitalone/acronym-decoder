@@ -21,7 +21,8 @@
         "default_popup": "index.html#/popup"
     },
     "background": {
-        "service-worker": "background.js"
+        "service_worker": "background.js",
+        "type": "module"
     },
     "options_page": "index.html#/homepage",
     "content_scripts": [

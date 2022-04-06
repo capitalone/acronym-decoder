@@ -2,9 +2,16 @@ const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
-    entry: './content-script/boot.ts',
+    entry: {
+        'content-script': './content-script/boot.ts',
+        background: './src/background.ts'
+    },
     mode: 'production',
     devtool: 'source-map',
+    output: {
+        filename: '[name].js',
+        path: path.resolve(__dirname, 'dist'),
+    },
     module: {
         rules: [{
             test: /\.tsx?$/,
@@ -25,9 +32,5 @@ module.exports = {
             "http": require.resolve("stream-http"),
             "crypto": require.resolve("crypto-browserify")
         },
-    },
-    output: {
-        filename: 'content-script.js',
-        path: path.resolve(__dirname, 'dist'),
-    },
+    }
 };

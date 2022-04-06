@@ -41,8 +41,7 @@ export class EventPageComponent implements OnInit {
     }
 
     constructor(private definitionService: DefinitionService,
-                private resolver: ViewContainerRef,
-                private injector: Injector) {
+                private resolver: ViewContainerRef) {
     }
 
     ngOnInit() {
@@ -111,5 +110,4 @@ export class EventPageComponent implements OnInit {
             }
         );
     }
-
 }

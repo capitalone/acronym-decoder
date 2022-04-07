@@ -1,4 +1,3 @@
-import { ViewContainerRef, ChangeDetectorRef } from '@angular/core';
 import {LookupSource} from './app/models/lookup-source.enum';
 import {LookupModel} from './app/models/lookup.model';
 import { Observable } from 'rxjs';
@@ -43,7 +42,7 @@ function generateLookup(data){
     lookupTerm(data.query, LookupSource.lookup).subscribe(
         (definitions: LookupModel[]) => {
             if(definitions.length > 0 || options.notFoundDialog){
-                const component = 
+                console.log(definitions);
             }
         }
     )
@@ -55,18 +54,15 @@ function lookupTerm(searchTerm: string, source: LookupSource): Observable<Lookup
 }
 
 function lookupTermLocally(searchTerm: string, source: LookupSource): Observable<LookupModel[]> {
-    fetch("glossary.json")
-    .then(response => response.json())
-    .then(glossary => {
-        return new Observable(observer => {
-            const definitions = glossary.filter(termObj => 
+    return new Observable(observer => {
+        fetch("glossary.json")
+        .then(response => response.json())
+        .then(glossary => {
+            const definitions = glossary.filter(termObj =>
                 termObj.acronym.toLowerCase() === searchTerm.toLowerCase()
             );
-            
             console.log('Search results (locally): ', definitions);
             observer.next(definitions);
-        })
+        });
     });
-
-    return null;
 }

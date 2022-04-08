@@ -42,7 +42,36 @@ function generateLookup(data){
     lookupTerm(data.query, LookupSource.lookup).subscribe(
         (definitions: LookupModel[]) => {
             if(definitions.length > 0 || options.notFoundDialog){
-                console.log(definitions);
+                let popupHTML = "<div class=\"lookup-popup\">";
+
+                if(definitions.length === 0){
+                    popupHTML += "<div><p>No definition found</p></div>"
+                }
+                else{
+                    popupHTML += "<ol>";
+                    for(const def of definitions){
+                        popupHTML += "<li><p>"+def.definition+"</p><ul>";
+
+                        for(const link of def.links){
+                            popupHTML += "<li>"+link.name+": ";
+                            popupHTML += "<a href="+link.link+" target=\"_blank\" rel=\"noopener noreferrer\">";
+                            popupHTML += link.link+"</a></li>";
+                        }
+                        popupHTML += "</ul></li>";
+                    }
+
+                    popupHTML += "</ol>";
+                }
+
+                popupHTML += "</div>";
+
+                chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+                    chrome.tabs.sendMessage(tabs[0].id, {
+                        command: 'lookupElement',
+                        element: popupHTML,
+                        coord: data.coord
+                    });
+                });
             }
         }
     )

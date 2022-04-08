@@ -103,7 +103,8 @@ function lookupTermRemotely(searchTerm: string, source: LookupSource): Observabl
     return new Observable(observer => {
         fetch(lookupURL)
         .then(response => response.json())
-        .then(definitions => {
+        .then(json => {
+            const definitions = json.slurp;
             console.log('Search results (remotely): ', definitions);
             observer.next(definitions);
         });

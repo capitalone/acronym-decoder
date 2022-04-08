@@ -15,12 +15,12 @@ See the License for the specific language governing permissions and limitations 
  */
 
 import {Component, OnInit} from '@angular/core';
-import {EventPageComponent} from '../event-page/event-page.component';
 import {DefinitionService} from '../core/definition/definition.service';
 import {ConfigurationService} from '../core/configuration/configuration.service';
 import openOptionsPage = chrome.runtime.openOptionsPage;
 import {ConfigModel} from '../models/config.model';
 import {LookupSource} from '../models/lookup-source.enum';
+import { openDefaultEmailAddress } from '../../background';
 
 @Component({
     selector: 'app-popup',
@@ -90,7 +90,7 @@ export class PopupComponent implements OnInit {
      * @param email
      */
     openDefaultEmail(email): void {
-        EventPageComponent.openDefaultEmail(email);
+        openDefaultEmailAddress(email);
     }
 
     /**

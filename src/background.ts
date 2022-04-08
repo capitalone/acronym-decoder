@@ -2,14 +2,24 @@ import {LookupSource} from './app/models/lookup-source.enum';
 import {LookupModel} from './app/models/lookup.model';
 import { Observable } from 'rxjs';
 import { OptionsModel, OptionsModelKeys } from './app/models/options.model';
+import {ConfigModel} from './app/models/config.model';
+import * as c from './config.json';
 
 var options = null;
+var glossaryName = "glossary.json";
+var config = c;
 
-chrome.storage.local.get(OptionsModelKeys,
-    (results) => {
-        options = new OptionsModel(results);
-    }
-);
+initializeOptions();
+
+export function openDefaultEmailAddress(email: string): void{
+    const mailtoPath = 'mailto:' + email;
+
+    chrome.tabs.create({'url': mailtoPath}, function (tab) {
+        setTimeout(function () {
+            chrome.tabs.remove(tab.id);
+        }, 500);
+    });
+}
 
 chrome.storage.onChanged.addListener(
     (changes, namespace) => {
@@ -79,12 +89,30 @@ function generateLookup(data){
 
 function lookupTerm(searchTerm: string, source: LookupSource): Observable<LookupModel[]> {
     console.log('Acronym Decoder is looking up: ' + searchTerm);
-    return lookupTermLocally(searchTerm, source);
+    if(config.enableRemoteLookup){
+        return lookupTermRemotely(searchTerm, source);
+    }
+    else{
+        return lookupTermLocally(searchTerm, source);
+    }
+}
+
+function lookupTermRemotely(searchTerm: string, source: LookupSource): Observable<LookupModel[]> {
+    const lookupURL = config.lookupApiUrl + searchTerm + "&dep=false";
+
+    return new Observable(observer => {
+        fetch(lookupURL)
+        .then(response => response.json())
+        .then(definitions => {
+            console.log('Search results (remotely): ', definitions);
+            observer.next(definitions);
+        });
+    });
 }
 
 function lookupTermLocally(searchTerm: string, source: LookupSource): Observable<LookupModel[]> {
     return new Observable(observer => {
-        fetch("glossary.json")
+        fetch(glossaryName)
         .then(response => response.json())
         .then(glossary => {
             const definitions = glossary.filter(termObj =>
@@ -94,4 +122,23 @@ function lookupTermLocally(searchTerm: string, source: LookupSource): Observable
             observer.next(definitions);
         });
     });
+}
+
+function initializeOptions(){
+    chrome.storage.local.get(OptionsModelKeys,
+        (results) => {
+            options = new OptionsModel(results);
+        }
+    );
+
+    chrome.storage.onChanged.addListener(
+        (changes) => {
+            console.log('Acronym Decoder options changed', changes);
+            for(const key in changes){
+                if(OptionsModelKeys.indexOf(key) > -1){
+                    options[key] = changes[key].newValue;
+                }
+            }
+        }
+    );
 }

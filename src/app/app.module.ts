@@ -23,7 +23,6 @@ import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
 import {HomepageComponent} from './homepage/homepage.component';
-import {EventPageComponent} from './event-page/event-page.component';
 import {PopupComponent} from './popup/popup.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ConfigurationService} from './core/configuration/configuration.service';
@@ -46,7 +45,6 @@ import {CoreModule} from './core/core.module';
     declarations: [
         AppComponent,
         HomepageComponent,
-        EventPageComponent,
         PopupComponent,
         LookupComponent,
     ],

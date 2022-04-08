@@ -8,6 +8,9 @@
         "activeTab",
         "storage"
     ],
+    "host_permissions": [
+        "https://slurp.cloud.capitalone.com/api/query?q=*"
+    ],
     "icons": {
         "16": "assets/main-icon.png",
         "19": "assets/main-icon.png",

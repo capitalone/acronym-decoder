@@ -110,7 +110,7 @@ function lookupTermRemotely(searchTerm: string, source: LookupSource): Observabl
             observer.next(definitions);
         })
         .catch(error => {
-            console.log("Error: ", error);
+            console.log("Error: " + error);
         });
     });
 }

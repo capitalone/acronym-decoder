@@ -102,11 +102,15 @@ function lookupTermRemotely(searchTerm: string, source: LookupSource): Observabl
 
     return new Observable(observer => {
         fetch(lookupURL)
+        .then(handleErrors)
         .then(response => response.json())
         .then(json => {
             const definitions = json.slurp;
             console.log('Search results (remotely): ', definitions);
             observer.next(definitions);
+        })
+        .catch(error => {
+            console.log("Error: ", error);
         });
     });
 }
@@ -114,6 +118,7 @@ function lookupTermRemotely(searchTerm: string, source: LookupSource): Observabl
 function lookupTermLocally(searchTerm: string, source: LookupSource): Observable<LookupModel[]> {
     return new Observable(observer => {
         fetch(glossaryName)
+        .then(handleErrors)
         .then(response => response.json())
         .then(glossary => {
             const definitions = glossary.filter(termObj =>
@@ -121,8 +126,16 @@ function lookupTermLocally(searchTerm: string, source: LookupSource): Observable
             );
             console.log('Search results (locally): ', definitions);
             observer.next(definitions);
+        })
+        .catch(error => {
+            console.log("Error: " + error);
         });
     });
+}
+
+function handleErrors(response){
+    if(!response.ok) throw Error(response.statusText);
+    return response;
 }
 
 function initializeOptions(){

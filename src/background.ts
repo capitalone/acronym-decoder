@@ -2,7 +2,6 @@ import {LookupSource} from './app/models/lookup-source.enum';
 import {LookupModel} from './app/models/lookup.model';
 import { Observable } from 'rxjs';
 import { OptionsModel, OptionsModelKeys } from './app/models/options.model';
-import {ConfigModel} from './app/models/config.model';
 import * as c from './config.json';
 
 var options = null;

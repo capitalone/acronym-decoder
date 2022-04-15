@@ -59,14 +59,18 @@ function generateLookup(data){
                 else{
                     popupHTML += "<ol>";
                     for(const def of definitions){
-                        popupHTML += "<li><p>"+def.definition+"</p><ul>";
+                        popupHTML += "<li><p>"+def.definition+"</p>";
 
-                        for(const link of def.links){
-                            popupHTML += "<li>"+link.name+": ";
-                            popupHTML += "<a href="+link.link+" target=\"_blank\" rel=\"noopener noreferrer\">";
-                            popupHTML += link.link+"</a></li>";
+                        if(def.links != null){
+                            popupHTML += "<ul>";
+                            for(const link of def.links){
+                                popupHTML += "<li>"+link.name+": ";
+                                popupHTML += "<a href="+link.link+" target=\"_blank\" rel=\"noopener noreferrer\">";
+                                popupHTML += link.link+"</a></li>";
+                            }
+                            popupHTML += "</ul>";
                         }
-                        popupHTML += "</ul></li>";
+                        popupHTML += "</li>";
                     }
 
                     popupHTML += "</ol>";

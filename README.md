@@ -5,19 +5,23 @@ Whatever it is, Acronym-Decoder (A-D!) aims to help you get through the alphabet
 
 
 ## Run Local Server
-
+* Go [here](www.nodejs.org/en/download/) to download the latest version of nodejs. Follow the steps on the website to download the appropriate version according to your machine
+* Download this project by clicking 'Code' on the top right of the website, then click 'Download ZIP'. Follow the image for any further guidance necessary.
+![](readme-assets/download.png)
+* Open the project with your favorite text editor and enter the following commands in the terminal.
 * `npm install`
-* `gulp`
+* `npm run build`
 * Visit `chrome://extensions` on your chrome browser
-* Enable Developer mode
-* Load unpacked and select the `dist/` folder in the project
+* Enable Developer mode and click Load unpacked as seen in the image below
+![](readme-assets/loading.png)
+* Select the `dist/` folder in your project directory
 
 Note: modifications to content-script files will require you to refresh the extension from [chrome://extensions](chrome://extensions)
 
 ## Build
 
 * `npm install`
-* `gulp build`
+* `npm run build`
 
 ## Configuration
 

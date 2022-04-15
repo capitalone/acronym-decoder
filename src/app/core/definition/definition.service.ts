@@ -101,31 +101,26 @@ export class DefinitionService {
      * @returns {Observable<LookupModel[]>}
      */
     lookupTermRemotely(searchTerm: string, source: LookupSource): Observable<LookupModel[]> {
-        const lookupUrl = this.config.lookupApiUrl + searchTerm + "&dep=false";
-
+        const lookupURL = this.config.lookupApiUrl + searchTerm + "&dep=false";
+    
         return new Observable(observer => {
-            this.http.get<LookupApiResponseModel>(lookupUrl)
-                .pipe(timeout(3000))
-                .subscribe({
-                    next: (res : LookupApiResponseModel) => {
-                        console.log('Search results (remotely): ', res);
-                        ConfigurationService.isBackendOnline = true;
-                        this.gaLookupEvent(source, DatabaseType.server, searchTerm, res.data.length);
-                        observer.next(res.data);
-                    },
-                    error: (e) => {
-                        console.log('Http Client error ', e);
-                        ConfigurationService.isBackendOnline = false;
-
-                        // Remote call failed, so fallback to local search
-                        this.lookupTermLocally(searchTerm, source).subscribe(
-                            localRes => {
-                                observer.next(localRes);
-                            }
-                        );
-                    }
-                });
+            fetch(lookupURL)
+            .then(this.handleErrors)
+            .then(response => response.json())
+            .then(json => {
+                const definitions = json.slurp;
+                console.log('Search results (remotely): ', definitions);
+                observer.next(definitions);
+            })
+            .catch(error => {
+                console.log("Error: " + error);
+            });
         });
+    }
+
+    handleErrors(response){
+        if(!response.ok) throw Error(response.statusText);
+        return response;
     }
 
     /**

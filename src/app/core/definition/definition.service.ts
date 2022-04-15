@@ -101,8 +101,23 @@ export class DefinitionService {
      * @returns {Observable<LookupModel[]>}
      */
     lookupTermRemotely(searchTerm: string, source: LookupSource): Observable<LookupModel[]> {
-        const lookupUrl = this.config.lookupApiUrl + searchTerm;
+        const lookupURL = this.config.lookupApiUrl + searchTerm + "&dep=false";
 
+        return new Observable(observer => {
+            fetch(lookupURL)
+            .then(this.handleErrors)
+            .then(response => response.json())
+            .then(json => {
+                const definitions = json.slurp;
+                console.log('Search results (remotely): ', definitions);
+                observer.next(definitions);
+            })
+            .catch(error => {
+                console.log("Error: " + error);
+            });
+        });
+
+        /*
         return new Observable(observer => {
             this.http.get<LookupApiResponseModel>(lookupUrl)
                 .pipe(timeout(3000))
@@ -126,6 +141,12 @@ export class DefinitionService {
                     }
                 });
         });
+        */
+    }
+
+    handleErrors(response){
+        if(!response.ok) throw Error(response.statusText);
+        return response;
     }
 
     /**

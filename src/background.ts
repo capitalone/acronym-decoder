@@ -52,6 +52,7 @@ function generateLookup(data){
         (definitions: LookupModel[]) => {
             if(definitions.length > 0 || options.notFoundDialog){
                 let popupHTML = "<div class=\"lookup-popup\">";
+                popupHTML += "<div><h3>" + data.query + "</h3></div>";
 
                 if(definitions.length === 0){
                     popupHTML += "<div><p>No definition found</p></div>"

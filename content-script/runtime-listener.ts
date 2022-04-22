@@ -99,6 +99,7 @@ export class RuntimeListener {
                                         min-width: 300px;
                                         max-width: 600px;
                                         padding: 20px;
+                                        padding-top: 10px;
                                         background: #ffffff;
                                         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
                                     }

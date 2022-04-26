@@ -1,7 +1,7 @@
 {
     "name": "Acronym Decoder Chrome Extension",
     "description": "Search for a term to get definitions and explanations for all of your organization or industry's acronyms, terms and phrases.",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "manifest_version": 3,
     "permissions": [
         "tabs",

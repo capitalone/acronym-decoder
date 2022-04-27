@@ -15,6 +15,7 @@ See the License for the specific language governing permissions and limitations 
  */
 
 import {RuntimeListener} from './runtime-listener';
+import * as _ from 'lodash';
 
 console.log('content script!');
 const runtimeListener = new RuntimeListener();

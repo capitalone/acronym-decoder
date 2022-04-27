@@ -3,7 +3,7 @@
     "onlineIconPath": "../../assets/main-icon.png",
     "offlineIconPath": "../../assets/browser-icon-local.png",
     "contactEmail": "email@email.com",
-    "lookupApiUrl": "https://blahblahblah.com/api",
+    "lookupApiUrl": "lookupApiUrl.com",
     "enableRemoteLookup": false,
     "slackChannelLink": "slack://channel?team=<TEAM-ID>&id=<CHANNEL-ID>",
     "slackChannelName": "#nameOfTheChannel",

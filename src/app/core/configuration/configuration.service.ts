@@ -16,7 +16,7 @@ See the License for the specific language governing permissions and limitations 
 
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import {ConfigModel} from '../../models/config.model';
 
 @Injectable()
@@ -37,11 +37,11 @@ export class ConfigurationService {
     }
 
     getJsonFileContent(fileName: string): Observable<any> {
-        return this.http.get(chrome.extension.getURL(fileName));
+        return this.http.get(chrome.runtime.getURL(fileName));
     }
 
     getExtensionVersion(): Observable<string> {
-        return Observable.create(observer => {
+        return new Observable(observer => {
             if (this.manifest) {
                 observer.next(this.manifest.version);
             } else {
@@ -55,7 +55,7 @@ export class ConfigurationService {
     }
 
     getConfiguration(): Observable<ConfigModel> {
-        return Observable.create(observer => {
+        return new Observable(observer => {
             if (this.config) {
                 observer.next(this.config);
             } else {

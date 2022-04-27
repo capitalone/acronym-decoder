@@ -15,17 +15,16 @@ See the License for the specific language governing permissions and limitations 
  */
 
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {ConfigurationService} from '../configuration/configuration.service';
-import 'rxjs/add/operator/map';
-import {AnalyticsService} from '../analytics/analytics.service';
+import { map } from 'rxjs/operators';
 import {LookupModel} from '../../models/lookup.model';
 import {ConfigModel} from '../../models/config.model';
 import {DatabaseType} from '../../models/database-type.enum';
 import {LookupApiResponseModel} from '../../models/lookup-api-response.model';
 import {LookupSource} from '../../models/lookup-source.enum';
-import 'rxjs/add/operator/timeout';
+import { timeout } from 'rxjs/operators';
 
 
 @Injectable()
@@ -38,7 +37,6 @@ export class DefinitionService {
 
 
     constructor(private configurationService: ConfigurationService,
-                private analyticsService: AnalyticsService,
                 private http: HttpClient) {
         this.populateConfiguration();
     }
@@ -79,7 +77,7 @@ export class DefinitionService {
      * @returns {Observable<LookupModel[]>}
      */
     lookupTermLocally(searchTerm: string, source: LookupSource): Observable<LookupModel[]> {
-        return Observable.create(observer => {
+        return new Observable(observer => {
             this.configurationService.getJsonFileContent(this.glossaryFileName)
                 .subscribe(glossary => {
                     this.previousSearchTerm = searchTerm;
@@ -103,30 +101,26 @@ export class DefinitionService {
      * @returns {Observable<LookupModel[]>}
      */
     lookupTermRemotely(searchTerm: string, source: LookupSource): Observable<LookupModel[]> {
-        const lookupUrl = this.config.lookupApiUrl + searchTerm;
-
-        return Observable.create(observer => {
-            this.http.get<LookupApiResponseModel>(lookupUrl)
-                .timeout(3000)
-                .subscribe(
-                    (res: LookupApiResponseModel) => {
-                        console.log('Search results (remotely): ', res);
-                        ConfigurationService.isBackendOnline = true;
-                        this.gaLookupEvent(source, DatabaseType.server, searchTerm, res.data.length);
-                        observer.next(res.data);
-                    },
-                    error => {
-                        console.log('Http Client error: ', error);
-                        ConfigurationService.isBackendOnline = false;
-
-                        // Remote call failed, so fallback to local search
-                        this.lookupTermLocally(searchTerm, source).subscribe(
-                            localRes => {
-                                observer.next(localRes);
-                            }
-                        );
-                    });
+        const lookupURL = this.config.lookupApiUrl + searchTerm + "&dep=false";
+    
+        return new Observable(observer => {
+            fetch(lookupURL)
+            .then(this.handleErrors)
+            .then(response => response.json())
+            .then(json => {
+                const definitions = json.slurp;
+                console.log('Search results (remotely): ', definitions);
+                observer.next(definitions);
+            })
+            .catch(error => {
+                console.log("Error: " + error);
+            });
         });
+    }
+
+    handleErrors(response){
+        if(!response.ok) throw Error(response.statusText);
+        return response;
     }
 
     /**
@@ -138,9 +132,7 @@ export class DefinitionService {
      * @param {number} numResults
      */
     gaLookupEvent(lookupSource: LookupSource, databaseType: DatabaseType, term: string, numResults: number) {
-        if (this.config.googleAnalyticsEnabled) {
-            this.analyticsService.getVisitor().event(lookupSource, databaseType, term, numResults).send();
-        }
+        
     }
 
 }

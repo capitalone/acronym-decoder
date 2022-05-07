@@ -36,7 +36,8 @@ The format of the file should stay the same as the example that lives in there c
 ### Remote Glossary:
 You can also setup a database and backend and host your terms/acronyms on a server. This feature is off by default. 
 Make sure to replace the `lookupApiUrl` in the `config.json` file with the server URL.
-Also you need to make sure that the toggle for `enableRemoteLookup` is set to `true` on the `config.json` file to enable remote lookup. If for any reason the API fails, the app will fallback to local glossary.
+Also you need to make sure that the toggle for `enableRemoteLookup` is set to `true` on the `config.json` file to enable remote lookup. If for any reason the API fails, the app will fallback to local glossary. 
+Host permissions can optionally be added the `host_permissions` attribute to `manifest.json` file. 
 
 ## Contributors:
 We welcome your interest in Capital One’s Open Source Projects (the “Project”). Any Contributor to the project must accept and sign a CLA indicating agreement to the license terms. Except for the license granted in this CLA to Capital One and to recipients of software distributed by Capital One, you reserve all right, title, and interest in and to your contributions; this CLA does not impact your rights to use your own contributions for any other purpose.
@@ -47,7 +48,15 @@ We welcome your interest in Capital One’s Open Source Projects (the “Project
 
 This project adheres to the [Open Source Code of Conduct](https://developer.capitalone.com/single/code-of-conduct/). By participating, you are expected to honor this code.
 
-### Project main contributors:
+### Modernization contributors:
+
+[@Eric Li](https://github.com/@ericliau1)
+
+[@Samyak Jain](https://github.com/@samyakjain11)
+
+### Project creators:
+[@Ahmad Ibrahim](https://github.com/amadib)
+
 [@Basim Partovi](https://github.com/baspartovi)
 
 [@Jason Yeomans](https://github.com/YeomansIII)

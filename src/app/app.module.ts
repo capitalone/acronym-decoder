@@ -48,9 +48,6 @@ import {CoreModule} from './core/core.module';
         PopupComponent,
         LookupComponent,
     ],
-    entryComponents: [
-        LookupComponent
-    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,0 +1,25 @@
+diff --git a/node_modules/glob/glob.js b/node_modules/glob/glob.js
+index afcf827..c7aec88 100644
+--- a/node_modules/glob/glob.js
++++ b/node_modules/glob/glob.js
+@@ -340,15 +340,11 @@ Glob.prototype._process = function (pattern, index, inGlobStar, cb) {
+ 
+   // get the list of entries.
+   var read
+-  if (prefix === null)
+-    read = '.'
+-  else if (isAbsolute(prefix) || isAbsolute(pattern.join('/'))) {
+-    if (!prefix || !isAbsolute(prefix))
+-      prefix = '/' + prefix
+-    read = prefix
+-  } else
+-    read = prefix
+-
++  if (prefix === null) {
++    read = '.';
++  } else {
++    read = prefix;
++  }
+   var abs = this._makeAbs(read)
+ 
+   //if ignored, skip _processing

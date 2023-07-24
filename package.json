@@ -30,6 +30,7 @@
     "core-js": "^3.21.1",
     "crypto-browserify": "^3.12.0",
     "node-sass": "^9.0.0",
+    "patch-package": "^7.0.2",
     "rxjs": "^7.5.4",
     "stream-http": "^3.2.0",
     "universal-analytics": "^0.5.3",

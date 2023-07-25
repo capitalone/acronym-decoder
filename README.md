@@ -50,6 +50,8 @@ This project adheres to the [Open Source Code of Conduct](https://developer.capi
 
 ### Modernization contributors:
 
+[@Frank Zhou](https://github.com/fpmc1)
+
 [@Eric Li](https://github.com/@ericliau1)
 
 [@Samyak Jain](https://github.com/@samyakjain11)
@@ -69,7 +71,7 @@ Create an issue on our repo and let us know. We're always here to help!
 
 ## License
 
-    Copyright 2021 Capital One Services, LLC
+    Copyright 2021 - 2023 Capital One Services, LLC
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

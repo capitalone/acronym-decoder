@@ -25,7 +25,7 @@
     "@angular/router": "^16.1.6",
     "@ng-bootstrap/ng-bootstrap": "^15.1.1",
     "@popperjs/core": "^2.11.8",
-    "@types/universal-analytics": "^0.4.5",
+    "@types/universal-analytics": "^0.4.8",
     "bootstrap": "^5.3.1",
     "core-js": "^3.32.0",
     "crypto-browserify": "^3.12.0",

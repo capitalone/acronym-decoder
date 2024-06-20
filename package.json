@@ -32,7 +32,7 @@
     "rxjs": "^7.5.4",
     "stream-http": "^3.2.0",
     "universal-analytics": "^0.5.3",
-    "zone.js": "^0.13.1"
+    "zone.js": "^0.14.6"
   },
   "devDependencies": {
     "@angular-builders/custom-webpack": "^16.0.0",

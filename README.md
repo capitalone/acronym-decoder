@@ -9,7 +9,7 @@ Whatever it is, Acronym-Decoder (A-D!) aims to help you get through the alphabet
 * Download this project by clicking 'Code' on the top right of the website, then click 'Download ZIP'. Follow the image for any further guidance necessary.
 ![](readme-assets/download.png)
 * Open the project with your favorite text editor and enter the following commands in the terminal.
-* `npm install`
+* `npm install --legacy-peer-deps`
 * `npm run build`
 * Visit `chrome://extensions` on your chrome browser
 * Enable Developer mode and click Load unpacked as seen in the image below
@@ -20,7 +20,7 @@ Note: modifications to content-script files will require you to refresh the exte
 
 ## Build
 
-* `npm install`
+* `npm install --legacy-peer-deps`
 * `npm run build`
 
 ## Configuration

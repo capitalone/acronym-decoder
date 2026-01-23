@@ -17,7 +17,7 @@ See the License for the specific language governing permissions and limitations 
 import {NgModule, Directive, Input} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import {AppRoutingModule} from './app-routing.module';
 
@@ -31,25 +31,19 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {LookupComponent} from './lookup/lookup.component';
 import {CoreModule} from './core/core.module';
 
-@NgModule({
-    imports: [
-        BrowserModule,
-        FormsModule,
-        CoreModule,
-        AppRoutingModule,
-        HttpClientModule,
-        NgbModule,
-        FlexLayoutModule,
-        AppMaterialModule,
-    ],
-    declarations: [
+@NgModule({ declarations: [
         AppComponent,
         HomepageComponent,
         PopupComponent,
         LookupComponent,
     ],
-    bootstrap: [AppComponent]
-})
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        FormsModule,
+        CoreModule,
+        AppRoutingModule,
+        NgbModule,
+        FlexLayoutModule,
+        AppMaterialModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {
 }
 

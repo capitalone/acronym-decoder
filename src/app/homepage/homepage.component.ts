@@ -24,7 +24,8 @@ import {ConfigModel} from '../models/config.model';
     selector: 'app-homepage',
     templateUrl: './homepage.component.html',
     styleUrls: ['./homepage.component.scss'],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class HomepageComponent implements OnInit {
 

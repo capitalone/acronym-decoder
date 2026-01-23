@@ -4,6 +4,7 @@
     "outDir": "./dist/",
     "sourceMap": true,
     "noImplicitAny": false,
+    "esModuleInterop": true,
     "resolveJsonModule": true,
     "module": "es6",
     "jsx": "react",

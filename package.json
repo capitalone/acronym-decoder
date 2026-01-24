@@ -37,7 +37,7 @@
   "devDependencies": {
     "@angular-builders/custom-webpack": "^16.0.1",
     "@angular-devkit/build-angular": "^19.2.19",
-    "@angular/cli": "^19.2.19",
+    "@angular/cli": "^21.1.1",
     "@angular/compiler-cli": "^19.2.18",
     "@angular/language-service": "^19.2.18",
     "@types/chrome": "^0.0.178",

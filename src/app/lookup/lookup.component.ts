@@ -20,7 +20,8 @@ import {LookupModel} from '../models/lookup.model';
 @Component({
     selector: 'app-lookup',
     templateUrl: './lookup.component.html',
-    styleUrls: ['./lookup.component.css']
+    styleUrls: ['./lookup.component.css'],
+    standalone: false
 })
 export class LookupComponent implements OnInit {
 

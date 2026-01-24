@@ -16,7 +16,7 @@ See the License for the specific language governing permissions and limitations 
 
 import {Injectable} from '@angular/core';
 import { Observable } from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {ConfigurationService} from '../configuration/configuration.service';
 import { map } from 'rxjs/operators';
 import {LookupModel} from '../../models/lookup.model';

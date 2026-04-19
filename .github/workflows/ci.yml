@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+        # tslint is deprecated — failures warn but do not block
+        continue-on-error: true
+
+      - name: Test
+        run: npm run test:ci
+
+      - name: Build
+        run: npx ng build --configuration=production
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+
+      - name: Security audit
+        run: npm audit --audit-level=high
+        # Snyk manages fixes via PRs; audit here surfaces new issues without blocking
+        continue-on-error: true

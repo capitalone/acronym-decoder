@@ -1,5 +1,5 @@
 /*
-SPDX-Copyright: Copyright (c) Capital One Services,LLC 
+SPDX-Copyright: Copyright (c) Capital One Services,LLC
 SPDX-License-Identifier: Apache-2.0
 
 Copyright 2018 Capital One Services, LLC
@@ -15,18 +15,42 @@ See the License for the specific language governing permissions and limitations 
  */
 
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { of } from 'rxjs';
 
 import { PopupComponent } from './popup.component';
+import { DefinitionService } from '../core/definition/definition.service';
+import { ConfigurationService } from '../core/configuration/configuration.service';
+import { ConfigModel } from '../models/config.model';
+import { LookupSource } from '../models/lookup-source.enum';
+import { createConfigServiceSpy, itLoadsConfigAndVersion } from '../../testing/spec-helpers';
 
 describe('PopupComponent', () => {
-    let component:PopupComponent;
-    let fixture:ComponentFixture<PopupComponent>;
+    let component: PopupComponent;
+    let fixture: ComponentFixture<PopupComponent>;
+    let mockDefinitionService: jasmine.SpyObj<DefinitionService>;
+    let mockConfigService: jasmine.SpyObj<ConfigurationService>;
+
+    const mockConfig = Object.assign(new ConfigModel(), {
+        enableRemoteLookup: false,
+        contactEmail: 'test@example.com'
+    });
 
     beforeEach(waitForAsync(() => {
+        mockDefinitionService = jasmine.createSpyObj<DefinitionService>(
+            'DefinitionService',
+            ['lookupTerm']
+        );
+        mockConfigService = createConfigServiceSpy(mockConfig);
+
         TestBed.configureTestingModule({
-                declarations: [PopupComponent]
-            })
-            .compileComponents();
+            imports: [FormsModule],
+            declarations: [PopupComponent],
+            providers: [
+                { provide: DefinitionService, useValue: mockDefinitionService },
+                { provide: ConfigurationService, useValue: mockConfigService }
+            ]
+        }).compileComponents();
     }));
 
     beforeEach(() => {
@@ -37,5 +61,28 @@ describe('PopupComponent', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    itLoadsConfigAndVersion(() => component, () => mockConfigService, mockConfig);
+
+    describe('lookupTerm', () => {
+        it('should set isLoading to true then false and populate searchResults', () => {
+            const mockResults = [{ acronym: 'API', definition: 'Test', links: [], related: [] }];
+            mockDefinitionService.lookupTerm.and.returnValue(of(mockResults as any));
+            component.searchTerm = 'api';
+
+            component.lookupTerm();
+
+            expect(mockDefinitionService.lookupTerm).toHaveBeenCalledWith('api', LookupSource.popup);
+            expect(component.isLoading).toBeFalse();
+            expect(component.searchResults).toEqual(mockResults as any);
+        });
+
+        it('should uppercase the previous search term', () => {
+            mockDefinitionService.lookupTerm.and.returnValue(of([]));
+            component.searchTerm = 'api';
+            component.lookupTerm();
+            expect(component.previousSearchTerm).toBe('API');
+        });
     });
 });

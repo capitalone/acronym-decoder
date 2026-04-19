@@ -32,6 +32,10 @@ describe('LookupComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(LookupComponent);
     component = fixture.componentInstance;
+    // definitions/lookupWord are set externally by the event-page component;
+    // seed them so the template (which reads definitions.length) renders in tests.
+    component.definitions = [];
+    component.lookupWord = '';
     fixture.detectChanges();
   });
 

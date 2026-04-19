@@ -1,5 +1,5 @@
 /*
-SPDX-Copyright: Copyright (c) Capital One Services,LLC 
+SPDX-Copyright: Copyright (c) Capital One Services,LLC
 SPDX-License-Identifier: Apache-2.0
 
 Copyright 2018 Capital One Services, LLC
@@ -14,36 +14,44 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and limitations under the License.
  */
 
-// This file is required by karma.conf.js and loads recursively all the .spec and framework files
-
-import 'zone.js/dist/long-stack-trace-zone';
-import 'zone.js/dist/proxy.js';
-import 'zone.js/dist/sync-test';
-import 'zone.js/dist/jasmine-patch';
-import 'zone.js/dist/async-test';
-import 'zone.js/dist/fake-async-test';
+import 'zone.js';
+import 'zone.js/testing';
 import { getTestBed } from '@angular/core/testing';
 import {
     BrowserDynamicTestingModule,
     platformBrowserDynamicTesting
 } from '@angular/platform-browser-dynamic/testing';
 
-// Unfortunately there's no typing for the `__karma__` variable. Just declare it as any.
-declare const __karma__:any;
-declare const require:any;
-
-// Prevent Karma from running prematurely.
-__karma__.loaded = function () {
+// Global Chrome extension API mock — must be set before any spec files are loaded
+// so that module-level chrome.* calls in background.ts and components do not throw.
+(window as any)['chrome'] = {
+    runtime: {
+        getURL: (path: string) => `https://test-extension-id/${path}`,
+        openOptionsPage: () => {},
+        onMessage: { addListener: () => {} }
+    },
+    storage: {
+        local: {
+            get: (_keys: any, callback: (result: any) => void) => callback({}),
+            set: (_data: any, callback?: () => void) => { if (callback) callback(); }
+        },
+        onChanged: {
+            addListener: () => {}
+        }
+    },
+    tabs: {
+        create: (_opts: any, callback?: (tab: any) => void) => { if (callback) callback({ id: 1 }); },
+        remove: () => {},
+        query: (_opts: any, callback: (tabs: any[]) => void) => callback([{ id: 1 }]),
+        sendMessage: () => {}
+    }
 };
 
-// First, initialize the Angular testing environment.
+// Initialize the Angular testing environment.
+// Spec files are auto-discovered and loaded by @angular-devkit/build-angular's
+// FindTestsPlugin (matching tsconfig.spec.json's include glob), so no manual
+// require.context / __karma__ manipulation is needed here.
 getTestBed().initTestEnvironment(
     BrowserDynamicTestingModule,
     platformBrowserDynamicTesting()
 );
-// Then we find all the tests.
-const context = require.context('./', true, /\.spec\.ts$/);
-// And load the modules.
-context.keys().map(context);
-// Finally, start Karma to run the tests.
-__karma__.start();

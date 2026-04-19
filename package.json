@@ -7,16 +7,18 @@
     "start": "ng serve",
     "build": "ng build && webpack",
     "test": "ng test",
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadlessNoSandbox --code-coverage",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "audit": "npm audit --audit-level=high"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^19.2.18",
     "@angular/cdk": "^19.2.19",
     "@angular/common": "^19.2.18",
-    "@angular/compiler": "^19.2.20",
-    "@angular/core": "^19.2.20",
+    "@angular/compiler": "^19.2.18",
+    "@angular/core": "^19.2.18",
     "@angular/flex-layout": "^15.0.0-beta.42",
     "@angular/forms": "^19.2.18",
     "@angular/material": "^19.2.19",
@@ -35,7 +37,7 @@
     "zone.js": "^0.15.1"
   },
   "devDependencies": {
-    "@angular-builders/custom-webpack": "^16.0.1",
+    "@angular-builders/custom-webpack": "^19.0.0",
     "@angular-devkit/build-angular": "^19.2.19",
     "@angular/cli": "^19.2.19",
     "@angular/compiler-cli": "^19.2.18",
@@ -52,6 +54,7 @@
     "karma": "^6.3.16",
     "karma-chrome-launcher": "^3.1.0",
     "karma-cli": "^2.0.0",
+    "karma-coverage": "^2.2.1",
     "karma-coverage-istanbul-reporter": "^3.0.3",
     "karma-jasmine": "^4.0.1",
     "karma-jasmine-html-reporter": "^1.7.0",
@@ -65,6 +68,10 @@
   },
   "overrides": {
     "minimatch": "^9.0.3",
+    "karma": {
+      "minimatch": "^3.1.2"
+    },
+    "@babel/core": "^7.26.10",
     "semver": "^7.5.4",
     "braces": "^3.0.3",
     "micromatch": "^4.0.8",

@@ -1,0 +1,37 @@
+name: Auto-merge bot PRs
+
+# pull_request_target runs in the base branch context so GITHUB_TOKEN has write access.
+# We never checkout PR code here, only invoke gh pr merge — this is safe.
+on:
+  pull_request_target:
+    types: [opened, reopened, ready_for_review, synchronize]
+
+permissions:
+  pull-requests: write
+  contents: write
+
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    # Use pull_request.user.login (the PR author), not github.actor (the workflow
+    # triggering actor), which can differ on synchronize events and is considered
+    # a forgeable context value by SonarCloud S6549.
+    if: |
+      github.event.pull_request.user.login == 'dependabot[bot]' ||
+      github.event.pull_request.user.login == 'snyk-bot'
+
+    steps:
+      - name: Enable auto-merge
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Bind to env var before shell interpolation to prevent template injection.
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_REPO: ${{ github.repository }}
+        # --auto queues the merge; GitHub will merge only after all required checks pass.
+        # Requires "Allow auto-merge" to be enabled in repo Settings → General.
+        # If the feature is off or permissions are insufficient, we warn and exit cleanly
+        # so the PR is not blocked — it will need manual review instead.
+        run: |
+          gh pr merge --auto --squash "$PR_NUMBER" \
+            --repo "$PR_REPO" \
+          || echo "::warning::Auto-merge could not be enabled. Either enable 'Allow auto-merge' in repo settings or merge this PR manually once CI passes."

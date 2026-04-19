@@ -14,14 +14,15 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and limitations under the License.
  */
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://www.google.com/design/spec/style/color.html
-$app-primary: mat-palette($mat-green);
-$app-accent:  mat-palette($mat-indigo, 500, 400, 700);
+@use '@angular/material' as mat;
 
-// The warn palette is optional (defaults to red).
-$app-warn:    mat-palette($mat-red);
-
-// Create the theme object (a Sass map containing all of the palettes).
-$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+$app-primary: mat.m2-define-palette(mat.$m2-green-palette);
+$app-accent: mat.m2-define-palette(mat.$m2-indigo-palette, 500, 400, 700);
+$app-warn: mat.m2-define-palette(mat.$m2-red-palette);
+$app-theme: mat.m2-define-light-theme((
+  color: (
+    primary: $app-primary,
+    accent: $app-accent,
+    warn: $app-warn,
+  )
+));

@@ -14,9 +14,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and limitations under the License.
  */
 
-@import '@angular/material/theming';
-// Import your custom theme
-@import 'src/decoder-default-palette.scss';
+@use '@angular/material' as mat;
+@use '../../decoder-default-palette' as palette;
 
 html {
     background-color: #39a0d4;
@@ -61,14 +60,14 @@ h4, h6 {
     mat-spinner {
         display: inline;
         circle {
-            stroke: mat-color($app-primary);
+            stroke: mat.m2-get-color-from-palette(palette.$app-primary);
         }
     }
     .on-right {
         position: absolute;
         right: -35px;
         top: 25%;
-        color: mat-color($app-primary);
+        color: mat.m2-get-color-from-palette(palette.$app-primary);
         &.mat-icon {
             margin-top: -2px;
         }

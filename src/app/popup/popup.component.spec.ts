@@ -15,6 +15,7 @@ See the License for the specific language governing permissions and limitations 
  */
 
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 
 import { PopupComponent } from './popup.component';
 import { DefinitionService } from '../core/definition/definition.service';

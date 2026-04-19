@@ -15,13 +15,13 @@ See the License for the specific language governing permissions and limitations 
  */
 
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
 
 import { PopupComponent } from './popup.component';
 import { DefinitionService } from '../core/definition/definition.service';
 import { ConfigurationService } from '../core/configuration/configuration.service';
 import { ConfigModel } from '../models/config.model';
 import { LookupSource } from '../models/lookup-source.enum';
+import { createConfigServiceSpy, itLoadsConfigAndVersion } from '../../testing/spec-helpers';
 
 describe('PopupComponent', () => {
     let component: PopupComponent;
@@ -39,12 +39,7 @@ describe('PopupComponent', () => {
             'DefinitionService',
             ['lookupTerm']
         );
-        mockConfigService = jasmine.createSpyObj<ConfigurationService>(
-            'ConfigurationService',
-            ['getConfiguration', 'getExtensionVersion']
-        );
-        mockConfigService.getConfiguration.and.returnValue(of(mockConfig));
-        mockConfigService.getExtensionVersion.and.returnValue(of('1.0.0'));
+        mockConfigService = createConfigServiceSpy(mockConfig);
 
         TestBed.configureTestingModule({
             declarations: [PopupComponent],
@@ -65,15 +60,7 @@ describe('PopupComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should populate config on init', () => {
-        expect(mockConfigService.getConfiguration).toHaveBeenCalled();
-        expect(component.config).toEqual(mockConfig);
-    });
-
-    it('should populate extension version on init', () => {
-        expect(mockConfigService.getExtensionVersion).toHaveBeenCalled();
-        expect(component.extensionVersion).toBe('1.0.0');
-    });
+    itLoadsConfigAndVersion(() => component, () => mockConfigService, mockConfig);
 
     describe('lookupTerm', () => {
         it('should set isLoading to true then false and populate searchResults', () => {

@@ -16,12 +16,11 @@ See the License for the specific language governing permissions and limitations 
 
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserModule } from '@angular/platform-browser';
-import { DomSanitizer } from '@angular/platform-browser';
-import { of } from 'rxjs';
 
 import { HomepageComponent } from './homepage.component';
 import { ConfigurationService } from '../core/configuration/configuration.service';
 import { ConfigModel } from '../models/config.model';
+import { createConfigServiceSpy, itLoadsConfigAndVersion } from '../../testing/spec-helpers';
 
 describe('HomepageComponent', () => {
     let component: HomepageComponent;
@@ -35,12 +34,7 @@ describe('HomepageComponent', () => {
     });
 
     beforeEach(waitForAsync(() => {
-        mockConfigService = jasmine.createSpyObj<ConfigurationService>(
-            'ConfigurationService',
-            ['getConfiguration', 'getExtensionVersion']
-        );
-        mockConfigService.getConfiguration.and.returnValue(of(mockConfig));
-        mockConfigService.getExtensionVersion.and.returnValue(of('1.0.0'));
+        mockConfigService = createConfigServiceSpy(mockConfig);
 
         TestBed.configureTestingModule({
             imports: [BrowserModule],
@@ -61,15 +55,7 @@ describe('HomepageComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should populate config on init', () => {
-        expect(mockConfigService.getConfiguration).toHaveBeenCalled();
-        expect(component.config).toEqual(mockConfig);
-    });
-
-    it('should populate extension version on init', () => {
-        expect(mockConfigService.getExtensionVersion).toHaveBeenCalled();
-        expect(component.extensionVersion).toBe('1.0.0');
-    });
+    itLoadsConfigAndVersion(() => component, () => mockConfigService, mockConfig);
 
     describe('saveOptions', () => {
         it('should set savingOptions to true then false after the timeout', (done) => {

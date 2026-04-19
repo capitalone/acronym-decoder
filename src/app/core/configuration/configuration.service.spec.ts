@@ -24,7 +24,7 @@ describe('ConfigurationService', () => {
     let service: ConfigurationService;
     let httpMock: HttpTestingController;
 
-    const EXTENSION_URL = 'http://test-extension-id';
+    const EXTENSION_URL = 'https://test-extension-id';
     const mockConfig: ConfigModel = Object.assign(new ConfigModel(), {
         enableRemoteLookup: false,
         lookupApiUrl: 'https://api.example.com/lookup?term=',

@@ -26,7 +26,7 @@ import {
 // so that module-level chrome.* calls in background.ts and components do not throw.
 (window as any)['chrome'] = {
     runtime: {
-        getURL: (path: string) => `http://test-extension-id/${path}`,
+        getURL: (path: string) => `https://test-extension-id/${path}`,
         openOptionsPage: () => {},
         onMessage: { addListener: () => {} }
     },

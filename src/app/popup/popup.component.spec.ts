@@ -15,6 +15,7 @@ See the License for the specific language governing permissions and limitations 
  */
 
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 
 import { PopupComponent } from './popup.component';
@@ -43,6 +44,7 @@ describe('PopupComponent', () => {
         mockConfigService = createConfigServiceSpy(mockConfig);
 
         TestBed.configureTestingModule({
+            imports: [FormsModule],
             declarations: [PopupComponent],
             providers: [
                 { provide: DefinitionService, useValue: mockDefinitionService },

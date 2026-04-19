@@ -47,22 +47,11 @@ import {
     }
 };
 
-// Unfortunately there's no typing for the `__karma__` variable. Just declare it as any.
-declare const __karma__: any;
-declare const require: any;
-
-// Prevent Karma from running prematurely.
-__karma__.loaded = function () {};
-
 // Initialize the Angular testing environment.
+// Spec files are auto-discovered and loaded by @angular-devkit/build-angular's
+// FindTestsPlugin (matching tsconfig.spec.json's include glob), so no manual
+// require.context / __karma__ manipulation is needed here.
 getTestBed().initTestEnvironment(
     BrowserDynamicTestingModule,
     platformBrowserDynamicTesting()
 );
-
-// Find and load all spec files.
-const context = require.context('./', true, /\.spec\.ts$/);
-context.keys().map(context);
-
-// Start Karma.
-__karma__.start();

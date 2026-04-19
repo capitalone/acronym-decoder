@@ -7,8 +7,10 @@
     "start": "ng serve",
     "build": "ng build && webpack",
     "test": "ng test",
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadlessNoSandbox --code-coverage",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "audit": "npm audit --audit-level=high"
   },
   "private": true,
   "dependencies": {

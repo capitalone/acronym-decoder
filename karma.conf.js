@@ -1,5 +1,5 @@
 /*
-SPDX-Copyright: Copyright (c) Capital One Services,LLC 
+SPDX-Copyright: Copyright (c) Capital One Services,LLC
 SPDX-License-Identifier: Apache-2.0
 
 Copyright 2018 Capital One Services, LLC
@@ -44,6 +44,13 @@ module.exports = function (config) {
         logLevel: config.LOG_INFO,
         autoWatch: true,
         browsers: ['Chrome'],
+        // ChromeHeadlessNoSandbox is used in CI environments where --no-sandbox is required
+        customLaunchers: {
+            ChromeHeadlessNoSandbox: {
+                base: 'ChromeHeadless',
+                flags: ['--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage']
+            }
+        },
         singleRun: false
     });
 };

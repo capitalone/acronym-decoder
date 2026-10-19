@@ -76,7 +76,7 @@
     "braces": "^3.0.3",
     "micromatch": "^4.0.8",
     "elliptic": "^6.6.0",
-    "pbkdf2": "^3.1.3",
+    "pbkdf2": "^3.1.7",
     "sha.js": "^2.4.12",
     "picomatch": "^2.3.2",
     "postcss": "^8.5.25"

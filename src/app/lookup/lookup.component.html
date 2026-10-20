@@ -15,20 +15,28 @@ See the License for the specific language governing permissions and limitations 
 -->
 
 <div class="lookup-popup">
-    <div *ngIf="definitions.length > 0">
-        <a class="header">{{lookupWord}}</a>
-        <ol>
-            <li *ngFor="let def of definitions">
-                <p>{{def.definition}}</p>
-                <ul>
-                    <li *ngFor="let link of def.links">{{link.name}}:
-                        <a [href]="link.link" target="_blank" rel="noopener noreferrer">{{link.link}}</a>
-                    </li>
-                </ul>
-            </li>
-        </ol>
+  @if (definitions.length > 0) {
+    <div>
+      <a class="header">{{lookupWord}}</a>
+      <ol>
+        @for (def of definitions; track def) {
+          <li>
+            <p>{{def.definition}}</p>
+            <ul>
+              @for (link of def.links; track link) {
+                <li>{{link.name}}:
+                  <a [href]="link.link" target="_blank" rel="noopener noreferrer">{{link.link}}</a>
+                </li>
+              }
+            </ul>
+          </li>
+        }
+      </ol>
     </div>
-    <div *ngIf="definitions.length === 0">
-        <p>No definition found</p>
+  }
+  @if (definitions.length === 0) {
+    <div>
+      <p>No definition found</p>
     </div>
+  }
 </div>

@@ -17,5 +17,6 @@ See the License for the specific language governing permissions and limitations 
 @use '@angular/material' as mat;
 @use 'decoder-default-palette' as palette;
 
-@include mat.core();
+@include mat.elevation-classes();
+@include mat.app-background();
 @include mat.all-component-themes(palette.$app-theme);

@@ -24,7 +24,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HomepageComponent} from './homepage/homepage.component';
 import {PopupComponent} from './popup/popup.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ConfigurationService} from './core/configuration/configuration.service';
 import {AppMaterialModule} from './custom-modules/app-material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -41,7 +40,6 @@ import {CoreModule} from './core/core.module';
         FormsModule,
         CoreModule,
         AppRoutingModule,
-        NgbModule,
         FlexLayoutModule,
         AppMaterialModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {
